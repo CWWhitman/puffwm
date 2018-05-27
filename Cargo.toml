@@ -4,3 +4,6 @@ version = "0.1.0"
 authors = ["chris"]
 
 [dependencies]
+log = "0.4"
+x11 = { version = "*", features = ["xlib"] }
+
