@@ -9,6 +9,6 @@ fn main() {
     env_logger::init();
 
     info!("Creating window manager");
-    let wm = window_manager::WindowManager::new(WindowManager::create());
+    let mut wm = window_manager::WindowManager::new(WindowManager::create());
     wm.run();
 }
