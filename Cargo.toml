@@ -6,5 +6,5 @@ authors = ["chris"]
 [dependencies]
 log = "*"
 env_logger = "*"
-x11 = { version = "*", features = ["xlib"] }
+x11 = { version = "*", features = ["xlib", "keysym"] }
 

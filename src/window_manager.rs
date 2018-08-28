@@ -1,6 +1,7 @@
 extern crate x11;
 
 use self::x11::xlib;
+use self::x11::keysym;
 use std::collections::HashMap;
 use std::mem;
 use std::os::raw::*;
@@ -173,6 +174,12 @@ impl WindowManager {
                 self.unframe(event.window);
             }
 
+            xlib::KeyPress => {
+                let event: &xlib::XMotionEvent = event.as_ref();
+
+                if (event.state & xlib::Button1Mask) {
+
+
             xlib::ConfigureNotify => {}
 
             xlib::CreateNotify => {}
@@ -231,7 +238,16 @@ impl WindowManager {
             //xlib
             info!("framed {:?} in {:?}", window, frame);
             self.clients.insert(window, frame);
+            XGrabKey(
+                self.display,
+                xlib::XKeysymToKeycode(self.display, keysym::XK_h),
+                Mod1Mask,
+                window,
+                false,
+                xlib::GrabModeAsync,
+                xlib::GrabModeAsync);
         }
+            
     }
 
     fn unframe(&mut self, window: xlib::Window) {
